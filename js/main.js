@@ -1,4 +1,4 @@
-/* Flocco & Asociados — interacciones. Sin dependencias, sin build. */
+/* Flocco & Asociados - interacciones. Sin dependencias, sin build. */
 
 const WA_NUMERO = '5493417480459';
 const EMAIL = 'drafloccoana@gmail.com';
@@ -52,8 +52,8 @@ document.querySelectorAll('main section[id]').forEach(s => spy.observe(s));
 function armarMensaje(d) {
   return `Consulta desde la web
 Nombre: ${d.nombre}
-Teléfono: ${d.tel || '—'}
-Email: ${d.email || '—'}
+Teléfono: ${d.tel || '-'}
+Email: ${d.email || '-'}
 Área: ${d.area || 'Sin especificar'}
 
 ${d.mensaje}`;
@@ -69,7 +69,7 @@ form.addEventListener('submit', e => {
   const texto = encodeURIComponent(armarMensaje(d));
 
   if (e.submitter.dataset.mode === 'mail') {
-    const asunto = encodeURIComponent('Consulta web — ' + (d.area || 'General'));
+    const asunto = encodeURIComponent('Consulta web - ' + (d.area || 'General'));
     location.href = `mailto:${EMAIL}?subject=${asunto}&body=${texto}`;
   } else {
     open(`https://wa.me/${WA_NUMERO}?text=${texto}`, '_blank', 'noopener');
@@ -81,7 +81,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* Chequeo mínimo: abrir index.html#selftest y mirar la consola */
 if (location.hash === '#selftest') {
   const vacio = armarMensaje({ nombre: 'Ana', mensaje: 'Hola' });
-  console.assert(vacio.includes('Teléfono: —'), 'falta el guion en campos vacíos');
+  console.assert(vacio.includes('Teléfono: -'), 'falta el guion en campos vacíos');
   console.assert(vacio.includes('Área: Sin especificar'), 'falta el fallback de área');
   console.assert(armarMensaje({ area: 'Sucesiones' }).includes('Área: Sucesiones'), 'no toma el área elegida');
   console.log('selftest ok');

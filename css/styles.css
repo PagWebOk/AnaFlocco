@@ -1,5 +1,5 @@
 /* ============================================================
-   Flocco & Asociados — Estudio Jurídico
+   Flocco & Asociados - Estudio Jurídico
    Paleta: gris carbón · marrón · arena · blanco
    ============================================================ */
 
@@ -112,7 +112,8 @@ strong{ color:var(--white); font-weight:600; }
 
 .grad{
   display:block;
-  background:linear-gradient(100deg, var(--tan-soft) 0%, var(--tan) 35%, var(--brown-2) 78%, var(--taupe-2) 100%);
+  /* se mantiene en el rango claro: sobre la foto, los tonos oscuros perdían contraste */
+  background:linear-gradient(100deg, #F0E2D1 0%, var(--tan-soft) 45%, var(--tan) 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
   font-weight:700;
 }
@@ -240,118 +241,64 @@ strong{ color:var(--white); font-weight:600; }
 .hero{
   position:relative; min-height:100svh;
   display:flex; align-items:center;
-  padding:clamp(120px,14vh,180px) 0 clamp(80px,10vh,120px);
+  padding:clamp(96px,11vh,120px) 0 clamp(72px,8vh,96px);
   isolation:isolate; overflow:hidden;
 }
 .hero__bg{ position:absolute; inset:0; z-index:-1; background:var(--ink); }
 
-/* motas de polvo: dos capas de puntos que derivan a distinta velocidad */
-.hero__dust{
-  position:absolute; inset:-20%;
-  background-image:
-    radial-gradient(1.6px 1.6px at 20% 30%, rgba(226,203,178,.55), transparent),
-    radial-gradient(1.2px 1.2px at 70% 60%, rgba(226,203,178,.40), transparent),
-    radial-gradient(1.8px 1.8px at 45% 80%, rgba(226,203,178,.30), transparent),
-    radial-gradient(1.2px 1.2px at 85% 15%, rgba(226,203,178,.45), transparent);
-  background-size:340px 340px, 210px 210px, 460px 460px, 280px 280px;
-  animation:dust 70s linear infinite;
-  opacity:.55;
+/* encuadre a la derecha: ahí están el logo de la pared y el escritorio */
+.hero__photo{
+  width:100%; height:100%; object-fit:cover; object-position:68% 45%;
 }
-@keyframes dust{ to{ background-position:340px -680px, -420px -420px, 460px -920px, -560px -560px; } }
-
-.aurora{
-  position:absolute; border-radius:50%;
-  filter:blur(90px); opacity:.5; will-change:transform;
-}
-.aurora--1{
-  width:52vw; height:52vw; left:-14vw; top:-12vw;
-  background:radial-gradient(circle at 40% 40%, rgba(110,75,52,.85), transparent 65%);
-  animation:float1 26s ease-in-out infinite;
-}
-.aurora--2{
-  width:46vw; height:46vw; right:-10vw; top:8vh;
-  background:radial-gradient(circle at 50% 50%, rgba(107,98,90,.62), transparent 66%);
-  animation:float2 32s ease-in-out infinite;
-}
-.aurora--3{
-  width:60vw; height:40vw; left:22vw; bottom:-22vw;
-  background:radial-gradient(ellipse at 50% 50%, rgba(194,161,131,.16), transparent 62%);
-  animation:float3 38s ease-in-out infinite;
-}
-@keyframes float1{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(6vw,4vh) scale(1.12)} }
-@keyframes float2{ 0%,100%{transform:translate(0,0) scale(1.05)} 50%{transform:translate(-5vw,6vh) scale(.92)} }
-@keyframes float3{ 0%,100%{transform:translate(0,0)} 50%{transform:translate(-7vw,-4vh)} }
-
-.hero__columns{ position:absolute; inset:0; opacity:.8; }
-.hero__columns svg{ width:100%; height:100%; }
-
-.hero__grain{
-  position:absolute; inset:-50%;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-  opacity:.045; mix-blend-mode:overlay; animation:grain 8s steps(6) infinite;
-  pointer-events:none;
-}
-@keyframes grain{
-  0%,100%{transform:translate(0,0)} 20%{transform:translate(-4%,3%)}
-  40%{transform:translate(3%,-4%)} 60%{transform:translate(-3%,-3%)} 80%{transform:translate(4%,2%)}
-}
-.hero__vignette{
+/* velo: garantiza contraste del texto sobre la foto, más oscuro a la izquierda */
+.hero__scrim{
   position:absolute; inset:0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 45%, transparent 0%, rgba(19,18,17,.55) 75%, var(--ink) 100%),
-    linear-gradient(180deg, rgba(19,18,17,.75) 0%, transparent 25%, transparent 65%, var(--ink) 100%);
+    linear-gradient(90deg, rgba(19,18,17,.92) 0%, rgba(19,18,17,.72) 40%, rgba(19,18,17,.28) 100%),
+    linear-gradient(180deg, rgba(19,18,17,.78) 0%, transparent 28%, transparent 58%, var(--ink) 100%);
+}
+@media (max-width: 760px){
+  .hero__scrim{
+    background:
+      linear-gradient(180deg, rgba(19,18,17,.88) 0%, rgba(19,18,17,.72) 45%, var(--ink) 100%);
+  }
 }
 
-.hero__content{ position:relative; text-align:center; }
-.hero__title{ margin:0 0 1.4rem; text-wrap:balance; }
+/* el container ya centra y limita a 1200px: el ancho se controla en los hijos,
+   si se limita acá el bloque entero se va al medio */
+.hero__content{ position:relative; }
+.hero__title{
+  /* 25ch deja entrar "también es nuestra labor" en una sola línea */
+  margin:0 0 1.4rem; max-width:25ch;
+  font-size:clamp(2.3rem, 4.4vw, 3.9rem);
+}
 .hero__lead{
-  max-width:640px; margin:0 auto 2.6rem; color:var(--gray);
+  max-width:44ch; margin:0 0 2.4rem; color:var(--text);
   font-size:clamp(1rem,1.15vw,1.15rem);
 }
-.hero__actions{ display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+.hero__actions{ display:flex; flex-wrap:wrap; gap:1rem; }
 
-.hero__trust{
-  display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(1.5rem,5vw,4rem);
-  margin-top:clamp(3rem,6vw,4.5rem); padding-top:2rem;
-  border-top:1px solid var(--line-soft);
+/* ---------- franja de datos, debajo del hero ---------- */
+.factBand{
+  border-bottom:1px solid var(--line-soft);
+  background:var(--ink-2);
+  padding:1.6rem 0;
 }
-.hero__trust li{
-  font-size:.72rem; letter-spacing:.09em; text-transform:uppercase; color:var(--gray);
-  font-weight:500; display:flex; align-items:baseline; gap:.6rem;
+.factBand__list{
+  display:grid; gap:1rem clamp(1.5rem,5vw,3.5rem);
+  grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
 }
-.hero__trust span{
-  font-family:var(--serif); font-size:1.85rem; font-weight:700;
-  color:var(--tan); letter-spacing:0; text-transform:none;
+.factBand__list li{
+  display:flex; align-items:baseline; gap:.7rem;
+  font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--gray); font-weight:500;
+}
+.factBand__list span{
+  font-family:var(--serif); font-size:1.9rem; font-weight:700;
+  color:var(--tan); letter-spacing:0; text-transform:none; line-height:1;
 }
 
-.hero__scroll{
-  position:absolute; left:50%; bottom:28px; translate:-50% 0;
-  width:1px; height:56px; overflow:hidden;
-}
-.hero__scrollLine{
-  display:block; width:1px; height:100%;
-  background:linear-gradient(180deg, transparent, var(--tan));
-  animation:scrollLine 2.4s ease-in-out infinite;
-}
-@keyframes scrollLine{ 0%{transform:translateY(-100%)} 60%,100%{transform:translateY(100%)} }
 
-/* ---------- marquee ---------- */
-.marquee{
-  overflow:hidden; border-block:1px solid var(--line-soft);
-  background:linear-gradient(90deg, var(--ink), #1A1714, var(--ink));
-  padding:1.05rem 0; mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-}
-.marquee__track{
-  display:flex; align-items:center; gap:2rem; width:max-content;
-  animation:marquee 48s linear infinite;
-}
-.marquee__track span{
-  font-family:var(--sans); font-size:.78rem; font-weight:600;
-  letter-spacing:.14em; text-transform:uppercase;
-  color:var(--gray-2); white-space:nowrap;
-}
-.marquee__track i{ color:var(--brown-2); font-style:normal; font-size:.55rem; }
-@keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
 /* ============================================================
    ÁREAS

@@ -54,28 +54,8 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="inicio">
   <div class="hero__bg" aria-hidden="true">
-    <div class="aurora aurora--1"></div>
-    <div class="aurora aurora--2"></div>
-    <div class="aurora aurora--3"></div>
-    <div class="hero__columns">
-      <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMax slice">
-        <defs>
-          <linearGradient id="colFade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#C2A183" stop-opacity="0"/>
-            <stop offset=".45" stop-color="#C2A183" stop-opacity=".16"/>
-            <stop offset="1" stop-color="#C2A183" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <g stroke="url(#colFade)" stroke-width="1.2" fill="none">
-          <path d="M120 700 L120 180 M180 700 L180 180 M1020 700 L1020 180 M1080 700 L1080 180"/>
-          <path d="M100 180 Q150 120 200 180"/><path d="M1000 180 Q1050 120 1100 180"/>
-          <path d="M60 700 L60 240 M1140 700 L1140 240"/>
-        </g>
-      </svg>
-    </div>
-    <div class="hero__dust"></div>
-    <div class="hero__grain"></div>
-    <div class="hero__vignette"></div>
+    <img class="hero__photo" src="assets/hero-estudio.jpg" alt="" width="1680" height="944" fetchpriority="high" decoding="async">
+    <div class="hero__scrim"></div>
   </div>
 
   <div class="hero__content container">
@@ -85,9 +65,8 @@
       <span class="grad">también es nuestra labor</span>
     </h1>
     <p class="hero__lead reveal">
-      Te acompañamos en los momentos en que el derecho se vuelve personal: una separación,
-      una herencia, un despido, un reclamo que nadie te quiere escuchar.
-      Con criterio profesional y palabras que se entienden.
+      Te acompañamos cuando el derecho se vuelve personal: una separación, una herencia,
+      un despido, un reclamo que nadie escucha.
     </p>
     <div class="hero__actions reveal">
       <a class="btn btn--primary" href="#areas">Ver áreas de práctica</a>
@@ -97,24 +76,18 @@
       </a>
     </div>
 
-    <ul class="hero__trust reveal">
-      <li><span>9</span> áreas de práctica</li>
-      <li><span>1ª</span> consulta orientativa</li>
-      <li><span>24h</span> respuesta habitual</li>
-    </ul>
   </div>
-
-  <a href="#areas" class="hero__scroll" aria-label="Desplazarse hacia abajo">
-    <span class="hero__scrollLine"></span>
-  </a>
 </section>
 
-<!-- ============ MARQUEE ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>Derecho de familia</span><i>◆</i><span>Sucesiones</span><i>◆</i><span>Derecho laboral</span><i>◆</i><span>Previsional</span><i>◆</i><span>Daños y perjuicios</span><i>◆</i><span>Salud y obras sociales</span><i>◆</i><span>Concursos y quiebras</span><i>◆</i><span>Derecho civil</span><i>◆</i><span>Derecho de familia</span><i>◆</i><span>Sucesiones</span><i>◆</i><span>Derecho laboral</span><i>◆</i><span>Previsional</span><i>◆</i><span>Daños y perjuicios</span><i>◆</i><span>Salud y obras sociales</span><i>◆</i><span>Concursos y quiebras</span><i>◆</i><span>Derecho civil</span><i>◆</i>
-  </div>
-</div>
+<!-- ============ FRANJA DE DATOS ============ -->
+<section class="factBand" aria-label="El estudio en números">
+  <ul class="container factBand__list">
+    <li class="reveal"><span>9</span> áreas de práctica</li>
+    <li class="reveal"><span>2</span> provincias: Santa Fe y Buenos Aires</li>
+    <li class="reveal"><span>2</span> sedes: Rosario y Lobos</li>
+  </ul>
+</section>
+
 
 <!-- ============ ÁREAS ============ -->
 <section class="section" id="areas">
@@ -261,7 +234,6 @@
     </div>
 
     <div class="estudio__text">
-      <p class="eyebrow reveal">El estudio</p>
       <h2 class="reveal">Derecho con nombre, apellido<br>y teléfono que atiende</h2>
       <p class="reveal">
         Flocco &amp; Asociados es un estudio jurídico dirigido por la <strong>Dra. Ana Flocco</strong>.
@@ -270,8 +242,8 @@
         que le conteste.
       </p>
       <p class="reveal">
-        Muchos de los temas que llegan acá —una separación, una herencia, un despido, una
-        cobertura médica negada— no son solo expedientes: son momentos difíciles. Por eso
+        Muchos de los temas que llegan acá (una separación, una herencia, un despido, una
+        cobertura médica negada) no son solo expedientes: son momentos difíciles. Por eso
         la primera reunión es, antes que nada, escuchar.
       </p>
       <p class="reveal">
@@ -310,7 +282,6 @@
 <section class="section" id="proceso">
   <div class="container">
     <header class="sectionHead reveal">
-      <p class="eyebrow">Cómo trabajamos</p>
       <h2>De la consulta a la solución</h2>
       <p class="sectionHead__lead">Un camino previsible, para que sepas siempre en qué punto estás.</p>
     </header>
@@ -357,7 +328,6 @@
 <section class="section" id="faq">
   <div class="container faqWrap">
     <header class="sectionHead sectionHead--left reveal">
-      <p class="eyebrow">Preguntas frecuentes</p>
       <h2>Lo que más nos consultan</h2>
       <p class="sectionHead__lead">Respuestas generales y orientativas. Cada caso concreto requiere su propio análisis.</p>
     </header>
@@ -385,7 +355,7 @@
       </details>
       <details class="faq__item reveal">
         <summary>Me despidieron, ¿tengo plazo para reclamar?</summary>
-        <div class="faq__body"><p>Sí. Los reclamos laborales tienen plazos de prescripción, y ciertos pasos previos —como el intercambio telegráfico— conviene hacerlos rápido y bien redactados. Si acabás de recibir un telegrama, consultá cuanto antes.</p></div>
+        <div class="faq__body"><p>Sí. Los reclamos laborales tienen plazos de prescripción, y ciertos pasos previos, como el intercambio telegráfico, conviene hacerlos rápido y bien redactados. Si acabás de recibir un telegrama, consultá cuanto antes.</p></div>
       </details>
       <details class="faq__item reveal">
         <summary>¿Qué documentación conviene traer a la primera reunión?</summary>
